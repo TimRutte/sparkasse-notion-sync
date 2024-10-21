@@ -25,10 +25,10 @@ jobs:
 
       - name: Install OpenTofu
         run: |
-          curl -LO https://github.com/opentofu/opentofu/releases/latest/download/opentofu_linux_amd64.zip
-          unzip opentofu_linux_amd64.zip
+          curl -L https://github.com/opentofu/opentofu/releases/latest/download/opentofu_linux_amd64.tar.gz -o opentofu_linux_amd64.tar.gz
+          tar -xzf opentofu_linux_amd64.tar.gz
           sudo mv opentofu /usr/local/bin/
-          rm opentofu_linux_amd64.zip
+          rm opentofu_linux_amd64.tar.gz
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -43,5 +43,5 @@ jobs:
           TF_VAR_notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
         run: |
-          tofu init
-          tofu apply -auto-approve
+          opentofu init
+          opentofu apply -auto-approve
