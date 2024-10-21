@@ -23,13 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r lambda_function/requirements.txt
 
-      - name: Install OpenTofu
-        run: |
-          curl -L https://github.com/opentofu/opentofu/releases/latest/download/opentofu_linux_amd64.tar.gz -o opentofu_linux_amd64.tar.gz
-          tar -xzf opentofu_linux_amd64.tar.gz
-          sudo mv opentofu /usr/local/bin/
-          rm opentofu_linux_amd64.tar.gz
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -37,11 +30,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: OpenTofu Init and Apply
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.10
+
+      - name: Terraform Init and Apply
         env:
           TF_VAR_notion_token: ${{ secrets.NOTION_TOKEN }}
           TF_VAR_notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
         run: |
-          opentofu init
-          opentofu apply -auto-approve
+          terraform init
+          terraform apply -auto-approve
