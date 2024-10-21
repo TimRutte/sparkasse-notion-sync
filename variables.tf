@@ -3,6 +3,11 @@ variable "aws_region" {
   default     = "eu-west-1"
 }
 
+variable "aws_profile" {
+  description = "AWS profile"
+  default     = "default"
+}
+
 variable "notion_token" {
   description = "Notion API token"
 }
@@ -13,9 +18,4 @@ variable "notion_database_id" {
 
 variable "gmail_credentials" {
   description = "Gmail API credentials JSON"
-}
-
-variable "aws_profile" {
-    description = "AWS profile"
-    default     = "default"
 }

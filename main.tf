@@ -1,3 +1,12 @@
+terraform {
+  backend "s3" {
+    bucket = "timrutte-terraform-states"
+    key    = "sparkasse-notion-sync/terraform.tfstate"
+    region = "eu-west-1"
+    profile = "sparkasse-notion-sync"
+  }
+}
+
 provider "aws" {
   region = var.aws_region
   profile = var.aws_profile
@@ -47,7 +56,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
 }
 
 resource "aws_s3_bucket" "lambda_bucket" {
-  bucket = "${local.prefix}-lambda-email-processor"
+  bucket = "${local.prefix}-emails"
 }
 
 data "archive_file" "lambda_zip" {
