@@ -46,7 +46,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
 }
 
 resource "aws_s3_bucket" "lambda_bucket" {
-  bucket = "${local.prefix}-lambda-email-processor-bucket"
+  bucket = "${local.prefix}-lambda-email-processor"
 }
 
 data "archive_file" "lambda_zip" {
