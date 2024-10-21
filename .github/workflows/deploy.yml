@@ -40,6 +40,7 @@ jobs:
           TF_VAR_notion_token: ${{ secrets.NOTION_TOKEN }}
           TF_VAR_notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
+          TF_VAR_aws_region: eu-west-1
         run: |
           terraform init
           terraform apply -auto-approve
