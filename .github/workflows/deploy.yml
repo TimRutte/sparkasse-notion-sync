@@ -7,6 +7,7 @@ on:
 
 jobs:
   terraform_plan:
+    name: Plan Terraform
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -62,6 +63,7 @@ jobs:
           path: tfplan
 
   terraform_apply:
+    name: Apply Terraform
     needs: terraform_plan
     runs-on: ubuntu-latest
     steps:
