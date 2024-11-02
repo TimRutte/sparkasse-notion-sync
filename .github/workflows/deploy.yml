@@ -41,6 +41,8 @@ jobs:
           TF_VAR_notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
           TF_VAR_aws_region: eu-west-1
+          TF_VAR_aws_profile: default
         run: |
           terraform init
+          terraform plan
           terraform apply -auto-approve
