@@ -95,4 +95,6 @@ jobs:
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
           TF_VAR_aws_region: eu-west-1
           TF_VAR_aws_profile: sparkasse-notion-sync
-        run: terraform apply -auto-approve tfplan/tfplan
+        run: |
+          terraform init
+          terraform apply -auto-approve tfplan/tfplan
