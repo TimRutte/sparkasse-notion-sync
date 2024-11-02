@@ -7,6 +7,7 @@ on:
 
 jobs:
   terraform_plan:
+    name: Terraform Plan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -58,6 +59,7 @@ jobs:
           echo "::set-output name=tfplan::$(base64 tfplan)"
 
   terraform_apply:
+    name: Terraform Apply
     needs: terraform_plan
     runs-on: ubuntu-latest
     steps:
