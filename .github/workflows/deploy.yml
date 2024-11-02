@@ -7,7 +7,6 @@ on:
 
 jobs:
   terraform_plan:
-    name: Terraform Plan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -54,12 +53,15 @@ jobs:
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
           TF_VAR_aws_region: eu-west-1
           TF_VAR_aws_profile: sparkasse-notion-sync
-        run: |
-          terraform plan -out=tfplan
-          echo "::set-output name=tfplan::$(base64 tfplan)"
+        run: terraform plan -out=tfplan
+
+      - name: Upload tfplan
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfplan
+          path: tfplan
 
   terraform_apply:
-    name: Terraform Apply
     needs: terraform_plan
     runs-on: ubuntu-latest
     steps:
@@ -80,6 +82,12 @@ jobs:
         with:
           terraform_version: 1.0.10
 
+      - name: Download tfplan
+        uses: actions/download-artifact@v2
+        with:
+          name: tfplan
+          path: tfplan
+
       - name: Terraform Apply
         env:
           TF_VAR_notion_token: ${{ secrets.NOTION_TOKEN }}
@@ -87,6 +95,4 @@ jobs:
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
           TF_VAR_aws_region: eu-west-1
           TF_VAR_aws_profile: sparkasse-notion-sync
-        run: |
-          echo "${{ needs.terraform_plan.outputs.tfplan }}" | base64 -d > tfplan
-          terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve tfplan/tfplan
