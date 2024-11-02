@@ -34,7 +34,9 @@ jobs:
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
           TF_VAR_aws_region: eu-west-1
           TF_VAR_aws_profile: sparkasse-notion-sync
-        run: terraform init
+        run: |
+          cd iac/terraform
+          terraform init
 
       - name: Terraform Plan
         id: plan
@@ -44,7 +46,9 @@ jobs:
           TF_VAR_gmail_credentials: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
           TF_VAR_aws_region: eu-west-1
           TF_VAR_aws_profile: sparkasse-notion-sync
-        run: terraform plan -out=tfplan
+        run: |
+          cd iac/terraform
+          terraform plan -out=tfplan
 
       - name: Upload tfplan
         uses: actions/upload-artifact@v4
@@ -88,5 +92,6 @@ jobs:
           TF_VAR_aws_region: eu-west-1
           TF_VAR_aws_profile: sparkasse-notion-sync
         run: |
+          cd iac/terraform
           terraform init
           terraform apply -auto-approve tfplan/tfplan
