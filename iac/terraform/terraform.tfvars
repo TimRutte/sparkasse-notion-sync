@@ -1,0 +1,5 @@
+aws_region         = "eu-west-1"
+aws_profile        = "sparkasse-notion-sync"
+notion_token       = "sdfg"
+notion_database_id = "sdfg"
+gmail_credentials  = "sdfgsdfg"

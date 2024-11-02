@@ -1,134 +1,61 @@
-# Terraform specific files
-.terraform/
+# Golang
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build and IDE files
+*.test
+*.out
+*.o
+*.a
+
+# Packages
+vendor/
+*.tar.gz
+*.log
+
+# IDE and Editor directories/files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# Output of the go coverage tool
+*.cover
+
+# Dependency directories
+.gopath/
+.env
+
+# Terraform
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
 *.tfstate
 *.tfstate.*
+
+# Crash log files
 crash.log
-.terraform.lock.hcl
-terraform.tfvars
-terraform.tfvars.json
+
+# Exclude override files as they are usually local-only
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# Include .terraformrc and .terraformrc.json files as they are usually local-only
 .terraformrc
-.terraform.rc
+terraform.rc
+.terraformrc.json
 
-# Python specific files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.pdb
-*.egg
-*.egg-info/
-dist/
-build/
-eggs/
-parts/
-var/
-sdist/
-develop-eggs/
-.installed.cfg
-lib/
-lib64/
-pip-log.txt
-pip-delete-this-directory.txt
-*.log
+# Ignore editor swap files
+*~
 
-# Environments
-.env
-.venv/
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+build/*
+!build/.keep
 
-# IDEs and editors
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# macOS specific files
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear during build process
-*.bak
-*.tmp
-
-# Logs and databases
-*.log
-*.sql
-*.sqlite
-
-# AWS CLI credentials
-.aws/
-
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pylint
-.pylint.d
-
-# Coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-.pytest_cache/
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-
-# Test files
-*.test
-
-# Data files
-*.csv
-*.tsv
-*.dat
-*.data
-
-# Custom Lambda packages
-lambda_function.zip
-
-# Secrets
-credentials.json
-gmail_credentials.json
-notion_token.json
-
-# dotenv
-.env
